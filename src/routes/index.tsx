@@ -199,17 +199,6 @@ function Index() {
             backgroundPosition: "center",
           }}
         />
-        {/* Sunrise overlay text */}
-        {(phase === "sunrise" || phase === "done") && (
-          <div className="absolute inset-x-0 top-[30%] z-10 flex flex-col items-center text-center">
-            <h1
-              className="font-guj text-4xl font-bold text-[var(--color-gold-light)] drop-shadow-[0_2px_8px_rgba(0,0,0,.7)] animate-fade-in"
-            >
-              શુભ પ્રભાત 🙏
-            </h1>
-          </div>
-        )}
-
         {/* DOOR overlay */}
         {phase === "door" && (
           <div
