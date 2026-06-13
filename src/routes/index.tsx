@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import doorAsset from "@/assets/door-bg.jpg.asset.json";
 import sunriseAsset from "@/assets/sunrise-bg.jpg.asset.json";
 import invitationAsset from "@/assets/invitation-bg.jpg.asset.json";
+import pichwaiFrame from "@/assets/pichwai-frame.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -89,7 +90,7 @@ function Petals() {
 
 function Index() {
   const [phase, setPhase] = useState<
-    "loading" | "door" | "sunrise" | "shlok" | "done"
+    "loading" | "door" | "sunrise" | "done"
   >("loading");
   const [doorOpen, setDoorOpen] = useState(false);
   const [showPetals, setShowPetals] = useState(false);
@@ -112,11 +113,10 @@ function Index() {
     setDoorOpen(true);
     setShowPetals(true);
     setTimeout(() => setPhase("sunrise"), 1500);
-    setTimeout(() => setPhase("shlok"), 1500 + 3000);
     setTimeout(() => {
       setPhase("done");
       inviteRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 1500 + 3000 + 4500);
+    }, 1500 + 3500);
   };
 
   const triggerRsvp = () => {
@@ -192,46 +192,21 @@ function Index() {
       <section className="relative h-[100svh] w-full overflow-hidden">
         {/* Sunrise background (revealed once doors open) */}
         <div
-          className="absolute inset-0 transition-[filter] duration-700"
+          className="absolute inset-0"
           style={{
             backgroundImage: `url(${sunriseAsset.url})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            filter: phase === "shlok" ? "blur(8px) brightness(0.7)" : "none",
           }}
         />
         {/* Sunrise overlay text */}
-        {(phase === "sunrise" || phase === "shlok" || phase === "done") && (
-          <div className="absolute inset-x-0 top-[18%] z-10 flex flex-col items-center text-center">
-            <div
-              className="h-24 w-24 rounded-full bg-gradient-to-b from-yellow-200 to-amber-400"
-              style={{ animation: "sun-pulse 3s ease-in-out infinite" }}
-            />
+        {(phase === "sunrise" || phase === "done") && (
+          <div className="absolute inset-x-0 top-[30%] z-10 flex flex-col items-center text-center">
             <h1
-              className="mt-6 font-guj text-3xl font-bold text-[var(--color-gold-light)] drop-shadow-[0_2px_8px_rgba(0,0,0,.6)] animate-fade-in"
+              className="font-guj text-4xl font-bold text-[var(--color-gold-light)] drop-shadow-[0_2px_8px_rgba(0,0,0,.7)] animate-fade-in"
             >
               શુભ પ્રભાત 🙏
             </h1>
-          </div>
-        )}
-
-        {/* Shlok popup */}
-        {phase === "shlok" && (
-          <div className="absolute inset-0 z-30 flex items-center justify-center px-6 animate-fade-in">
-            <div className="relative w-full max-w-sm rounded-2xl bg-[var(--color-cream)] p-6 text-center shadow-2xl ring-4 ring-[var(--color-gold)]">
-              <div className="absolute inset-2 rounded-xl border border-[var(--color-gold)]/60 pointer-events-none" />
-              <div className="text-4xl">🙏</div>
-              <p className="mt-3 font-guj text-lg leading-relaxed text-[var(--color-maroon)]">
-                वक्रतुण्ड महाकाय<br />
-                सूर्यकोटि समप्रभ।<br />
-                निर्विघ्नं कुरु मे देव<br />
-                सर्वकार्येषु सर्वदा॥
-              </p>
-              <p className="mt-3 text-xs italic text-[var(--color-ink)]/70">
-                O Lord of curved trunk, large body, with the brilliance of a million suns,
-                please make all my endeavours free from obstacles, always.
-              </p>
-            </div>
           </div>
         )}
 
@@ -297,13 +272,6 @@ function Index() {
                 />
               </div>
             </button>
-
-            {/* Top blessing */}
-            <div className="pointer-events-none absolute inset-x-0 top-6 z-10 text-center">
-              <p className="font-guj text-xl font-bold text-[var(--color-gold-light)] drop-shadow-[0_2px_6px_rgba(0,0,0,.8)]">
-                ॐ श्री गणेशाय नमः
-              </p>
-            </div>
 
             {/* Bottom tap-to-open */}
             <div className="pointer-events-none absolute inset-x-0 bottom-10 z-10 text-center">
