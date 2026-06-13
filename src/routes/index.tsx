@@ -303,54 +303,53 @@ function Index() {
         <div className="bg-[var(--color-pichwai)]/40 backdrop-blur-[1px]">
           <div className="mx-auto max-w-md px-5 py-12 space-y-10">
             {/* INVITATION CARD */}
-            <article className="relative rounded-2xl bg-[var(--color-cream)] p-6 shadow-2xl ring-4 ring-[var(--color-gold)]">
-              <div className="absolute inset-2 rounded-xl border border-[var(--color-gold)]/60 pointer-events-none" />
-              <div className="text-center">
-                <p className="font-guj text-xl font-bold text-[var(--color-maroon)]">
-                  ॐ श्री गणेशाय नमः
+            <article
+              className="relative w-full overflow-hidden rounded-2xl shadow-2xl"
+              style={{
+                aspectRatio: "1080 / 1920",
+                backgroundImage: `url(${pichwaiFrame.url})`,
+                backgroundSize: "100% 100%",
+                backgroundRepeat: "no-repeat",
+              }}
+            >
+              {/* Content printed inside the pichwai frame */}
+              <div className="absolute inset-0 flex flex-col items-center px-[14%] pt-[22%] pb-[22%] text-center text-[var(--color-gold-light)]">
+                <p className="font-display text-[10px] uppercase tracking-[0.35em] text-[var(--color-gold)]">
+                  With blessings of our elders
                 </p>
-                <div className="mx-auto my-4 h-px w-2/3 bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent" />
-                <p className="text-xs uppercase tracking-widest text-[var(--color-ink)]/70">
-                  With the blessings of Lord Ganesha & our dear elders
+                <div className="my-2 h-px w-2/3 bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent" />
+                <p className="font-display text-[11px] font-semibold tracking-[0.2em] text-[var(--color-gold-light)]">
+                  PATEL <span className="text-[var(--color-gold)]">&</span> SHAH FAMILY
                 </p>
-                <div className="my-4 rounded-lg border-2 border-[var(--color-gold)] py-3">
-                  <p className="font-display text-base font-bold text-[var(--color-maroon)]">
-                    PATEL FAMILY <span className="text-[var(--color-gold)]">&</span> SHAH FAMILY
+                <p className="mt-3 text-[11px] italic text-[var(--color-gold-light)]/80">
+                  cordially invite you to the
+                </p>
+                <p className="mt-1 font-guj text-2xl font-bold text-[var(--color-gold)]">
+                  સગાઈ
+                </p>
+                <p className="font-display text-[10px] tracking-[0.45em] text-[var(--color-gold-light)]/90">
+                  ENGAGEMENT
+                </p>
+                <p className="mt-3 text-[10px] italic text-[var(--color-gold-light)]/70">~ of ~</p>
+                <h2 className="mt-2 font-display text-2xl font-black leading-tight text-[var(--color-gold)] drop-shadow-[0_2px_4px_rgba(0,0,0,.5)]">
+                  RAHUL <span className="text-[var(--color-gold-light)]">&</span> PRIYA
+                </h2>
+
+                <div className="mt-auto w-full space-y-1.5 text-[11px]">
+                  <p className="font-semibold text-[var(--color-gold-light)]">
+                    📅 Sunday, 28th June 2026
+                  </p>
+                  <p className="text-[var(--color-gold-light)]/80">
+                    🕐 11:00 AM &middot; Muhurat 11:30 AM
+                  </p>
+                  <p className="text-[var(--color-gold-light)]/80">
+                    📍 The Grand Celebration Hall, Rajkot
+                  </p>
+                  <p className="text-[10px] italic text-[var(--color-gold-light)]/70">
+                    Dress code: Traditional / Ethnic
                   </p>
                 </div>
-                <p className="text-sm">Cordially invite you to celebrate the</p>
-                <div className="my-4 rounded-lg bg-[var(--color-maroon)] py-4 text-[var(--color-gold-light)]">
-                  <div className="text-2xl">💍</div>
-                  <p className="font-guj text-2xl font-bold">સગાઈ</p>
-                  <p className="font-display text-sm tracking-[0.4em]">ENGAGEMENT</p>
-                </div>
-                <p className="text-xs italic text-[var(--color-ink)]/70">~ of ~</p>
-                <h2 className="my-3 font-display text-3xl font-black text-[var(--color-maroon)]">
-                  <span className="text-[var(--color-gold)]">✦</span> RAHUL{" "}
-                  <span className="text-[var(--color-gold)]">&</span> PRIYA{" "}
-                  <span className="text-[var(--color-gold)]">✦</span>
-                </h2>
               </div>
-
-              <ul className="mt-5 space-y-3">
-                {[
-                  { i: "📅", t: "Sunday, 28th June 2026", s: "અષાઢ સુદ ત્રીજ" },
-                  { i: "🕐", t: "11:00 AM Onwards", s: "Muhurat: 11:30 AM" },
-                  { i: "📍", t: "The Grand Celebration Hall", s: "Rajkot, Gujarat" },
-                  { i: "👔", t: "Dress Code", s: "Traditional / Ethnic" },
-                ].map((d, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-3 border-l-4 border-[var(--color-gold)] bg-white/60 px-3 py-2 rounded-r-md"
-                  >
-                    <span className="text-xl">{d.i}</span>
-                    <div>
-                      <p className="font-semibold text-[var(--color-maroon)]">{d.t}</p>
-                      <p className="text-xs text-[var(--color-ink)]/70">{d.s}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
             </article>
 
             {/* TIMELINE */}
