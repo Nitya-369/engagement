@@ -199,17 +199,6 @@ function Index() {
             backgroundPosition: "center",
           }}
         />
-        {/* Sunrise overlay text */}
-        {(phase === "sunrise" || phase === "done") && (
-          <div className="absolute inset-x-0 top-[30%] z-10 flex flex-col items-center text-center">
-            <h1
-              className="font-guj text-4xl font-bold text-[var(--color-gold-light)] drop-shadow-[0_2px_8px_rgba(0,0,0,.7)] animate-fade-in"
-            >
-              શુભ પ્રભાત 🙏
-            </h1>
-          </div>
-        )}
-
         {/* DOOR overlay */}
         {phase === "door" && (
           <div
@@ -294,13 +283,13 @@ function Index() {
         ref={inviteRef}
         className="relative"
         style={{
-          backgroundImage: `url(${invitationAsset.url})`,
+          backgroundImage: `url(${pichwaiFrame.url})`,
           backgroundSize: "cover",
           backgroundAttachment: "fixed",
           backgroundPosition: "center",
         }}
       >
-        <div className="bg-[var(--color-pichwai)]/40 backdrop-blur-[1px]">
+        <div className="bg-[var(--color-pichwai)]/85 backdrop-blur-sm">
           <div className="mx-auto max-w-md px-5 py-12 space-y-10">
             {/* INVITATION CARD */}
             <article
@@ -353,29 +342,32 @@ function Index() {
             </article>
 
             {/* TIMELINE */}
-            <section className="rounded-2xl bg-[var(--color-cream)]/95 p-6 ring-2 ring-[var(--color-gold)]/60">
-              <h3 className="text-center font-guj text-2xl font-bold text-[var(--color-maroon)]">
+            <section className="relative overflow-hidden rounded-2xl border border-[var(--color-gold)]/40 bg-[var(--color-pichwai)]/80 p-6 shadow-[0_0_30px_rgba(212,175,55,.15)] ring-1 ring-[var(--color-gold)]/40">
+              <div className="pointer-events-none absolute -top-10 -right-10 text-[120px] opacity-10">🪷</div>
+              <div className="pointer-events-none absolute -bottom-12 -left-10 text-[120px] opacity-10">🪷</div>
+              <h3 className="relative text-center font-guj text-2xl font-bold text-[var(--color-gold)]">
                 શુભ કાર્યક્રમ
               </h3>
-              <p className="text-center text-xs uppercase tracking-widest text-[var(--color-ink)]/60">
+              <p className="relative text-center text-xs uppercase tracking-widest text-[var(--color-gold-light)]/70">
                 Auspicious Events
               </p>
-              <ol className="relative mt-6 ml-4 space-y-4 border-l-2 border-[var(--color-gold)] pl-6">
+              <div className="relative mx-auto my-3 h-px w-2/3 bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent" />
+              <ol className="relative mt-4 ml-4 space-y-4 border-l-2 border-[var(--color-gold)]/70 pl-6">
                 {timeline.map((e, i) => (
                   <li key={i} className="relative">
-                    <span className="absolute -left-[34px] top-2 grid h-6 w-6 place-items-center rounded-full bg-[var(--color-gold)] text-xs ring-2 ring-[var(--color-cream)]">
+                    <span className="absolute -left-[34px] top-2 grid h-7 w-7 place-items-center rounded-full bg-gradient-to-b from-[var(--color-gold)] to-[#9c7a1e] text-xs shadow-md ring-2 ring-[var(--color-pichwai)]">
                       {e.icon}
                     </span>
-                    <div className="rounded-lg border border-[var(--color-gold)]/60 bg-white/70 p-3">
+                    <div className="rounded-lg border border-[var(--color-gold)]/40 bg-[var(--color-pichwai)]/60 p-3 backdrop-blur-sm">
                       <div className="flex items-baseline justify-between">
-                        <p className="font-display font-bold text-[var(--color-maroon)]">
+                        <p className="font-display font-bold text-[var(--color-gold)]">
                           {e.title}
                         </p>
-                        <p className="text-xs font-semibold text-[var(--color-peacock)]">
+                        <p className="text-xs font-semibold text-[var(--color-gold-light)]">
                           {e.time}
                         </p>
                       </div>
-                      <p className="mt-1 text-xs text-[var(--color-ink)]/70">{e.note}</p>
+                      <p className="mt-1 text-xs text-[var(--color-gold-light)]/70">{e.note}</p>
                     </div>
                   </li>
                 ))}
@@ -383,15 +375,16 @@ function Index() {
             </section>
 
             {/* COUNTDOWN */}
-            <section className="rounded-2xl bg-[var(--color-maroon)] p-6 text-center text-[var(--color-gold-light)] ring-2 ring-[var(--color-gold)]">
-              <p className="font-display tracking-[0.3em]">⏳ COUNTING DOWN ⏳</p>
+            <section className="relative overflow-hidden rounded-2xl border border-[var(--color-gold)]/40 bg-[var(--color-pichwai)]/80 p-6 text-center text-[var(--color-gold-light)] shadow-[0_0_30px_rgba(212,175,55,.15)]">
+              <div className="pointer-events-none absolute inset-x-0 top-0 text-center text-3xl opacity-20">🪷</div>
+              <p className="relative font-display tracking-[0.3em] text-[var(--color-gold)]">⏳ COUNTING DOWN ⏳</p>
               <div className="mt-4 grid grid-cols-3 gap-3">
                 {[
                   { l: "DAYS", v: days },
                   { l: "HOURS", v: hours },
                   { l: "MINS", v: mins },
                 ].map((c) => (
-                  <div key={c.l} className="rounded-xl bg-black/30 py-4 ring-1 ring-[var(--color-gold)]/60">
+                  <div key={c.l} className="rounded-xl bg-black/40 py-4 ring-1 ring-[var(--color-gold)]/60">
                     <div className="font-display text-4xl font-black text-[var(--color-gold)]">
                       {c.v}
                     </div>
@@ -402,8 +395,8 @@ function Index() {
             </section>
 
             {/* MAP */}
-            <section className="rounded-2xl bg-[var(--color-cream)] p-4 ring-2 ring-[var(--color-gold)]/60">
-              <p className="mb-3 text-center font-display font-bold text-[var(--color-maroon)]">
+            <section className="rounded-2xl border border-[var(--color-gold)]/40 bg-[var(--color-pichwai)]/80 p-4 shadow-[0_0_30px_rgba(212,175,55,.15)]">
+              <p className="mb-3 text-center font-display font-bold text-[var(--color-gold)]">
                 📍 Venue Location
               </p>
               <div className="overflow-hidden rounded-lg ring-1 ring-[var(--color-gold)]/40">
@@ -418,31 +411,32 @@ function Index() {
                 href={CONFIG.mapsUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-3 block rounded-lg bg-[var(--color-peacock)] py-3 text-center font-semibold text-white active:scale-[0.98]"
+                className="mt-3 block rounded-lg bg-gradient-to-r from-[var(--color-gold)] to-[#9c7a1e] py-3 text-center font-semibold text-[var(--color-pichwai)] active:scale-[0.98]"
               >
                 🗺️ Get Directions
               </a>
             </section>
 
             {/* RSVP */}
-            <section className="rounded-2xl bg-[var(--color-cream)] p-6 text-center ring-2 ring-[var(--color-gold)]/60">
-              <p className="font-guj text-lg font-bold text-[var(--color-maroon)]">
+            <section className="relative overflow-hidden rounded-2xl border border-[var(--color-gold)]/40 bg-[var(--color-pichwai)]/80 p-6 text-center shadow-[0_0_30px_rgba(212,175,55,.15)]">
+              <div className="pointer-events-none absolute -bottom-8 -right-8 text-[100px] opacity-10">🪷</div>
+              <p className="relative font-guj text-lg font-bold text-[var(--color-gold)]">
                 આશીર્વાદ આપવા પધારો
               </p>
-              <p className="text-xs italic text-[var(--color-ink)]/70">
+              <p className="relative text-xs italic text-[var(--color-gold-light)]/70">
                 Grace us with your blessings
               </p>
-              <div className="mt-4 space-y-3">
+              <div className="relative mt-4 space-y-3">
                 <button
                   onClick={triggerRsvp}
                   disabled={rsvpDone}
-                  className="w-full rounded-xl bg-gradient-to-r from-[var(--color-maroon)] to-[#a8002b] py-3 font-semibold text-[var(--color-gold-light)] shadow-lg active:scale-[0.98] disabled:opacity-80"
+                  className="w-full rounded-xl bg-gradient-to-r from-[var(--color-gold)] to-[#9c7a1e] py-3 font-semibold text-[var(--color-pichwai)] shadow-lg active:scale-[0.98] disabled:opacity-80"
                 >
                   {rsvpDone ? "Thank You! ✓" : "💚 Yes, We'll Attend!"}
                 </button>
                 <button
                   onClick={downloadIcs}
-                  className="w-full rounded-xl border-2 border-[var(--color-gold)] bg-white py-3 font-semibold text-[var(--color-maroon)] active:scale-[0.98]"
+                  className="w-full rounded-xl border-2 border-[var(--color-gold)] bg-transparent py-3 font-semibold text-[var(--color-gold-light)] active:scale-[0.98]"
                 >
                   📅 Add to Calendar
                 </button>
@@ -453,10 +447,10 @@ function Index() {
                   📤 Share on WhatsApp
                 </button>
               </div>
-              <div className="mt-5">
+              <div className="relative mt-5">
                 <a
                   href={`tel:${CONFIG.contact.replace(/\s/g, "")}`}
-                  className="font-display text-[var(--color-peacock)]"
+                  className="font-display text-[var(--color-gold)]"
                 >
                   📞 {CONFIG.contact}
                 </a>
