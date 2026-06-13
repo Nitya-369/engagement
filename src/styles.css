@@ -4,6 +4,42 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --font-display: "Playfair Display", serif;
+  --font-body: "Poppins", sans-serif;
+  --font-guj: "Noto Sans Gujarati", sans-serif;
+  --color-maroon: #800020;
+  --color-gold: #D4AF37;
+  --color-gold-light: #F5E6A3;
+  --color-cream: #FFF8DC;
+  --color-peacock: #0D5C63;
+  --color-pichwai: #1a1a5e;
+  --color-ink: #2C1810;
+}
+
+@keyframes petal-fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(110vh) translateX(40px) rotate(720deg); opacity: 0; }
+}
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes sun-pulse {
+  0%,100% { box-shadow: 0 0 80px 20px rgba(255,200,80,.8), 0 0 160px 40px rgba(255,150,50,.5); }
+  50% { box-shadow: 0 0 120px 40px rgba(255,220,120,.9), 0 0 220px 80px rgba(255,170,60,.6); }
+}
+@keyframes soft-pulse {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: .85; }
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
 /*
  * Design system definition.
  *
