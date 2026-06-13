@@ -8,10 +8,10 @@ import pichwaiFrame from "@/assets/pichwai-frame.jpg.asset.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Rahul & Priya — Engagement Invitation" },
-      { name: "description", content: "With blessings, the Patel & Shah families invite you to the engagement of Rahul & Priya on 28th June 2026, Rajkot." },
-      { property: "og:title", content: "Rahul & Priya — Engagement Invitation" },
-      { property: "og:description", content: "Join us in celebrating the engagement of Rahul & Priya — 28th June 2026, Rajkot." },
+      { title: "Deven & Nitya — Engagement Invitation" },
+      { name: "description", content: "With blessings, the Patel & Shah families invite you to the engagement of Deven & Nitya on 28th June 2026, Rajkot." },
+      { property: "og:title", content: "Deven & Nitya — Engagement Invitation" },
+      { property: "og:description", content: "Join us in celebrating the engagement of Deven & Nitya — 28th June 2026, Rajkot." },
       { property: "og:image", content: invitationAsset.url },
       { name: "twitter:image", content: invitationAsset.url },
     ],
@@ -25,11 +25,11 @@ const CONFIG = {
   mapEmbed:
     "https://www.google.com/maps?q=22.3039,70.8022&z=14&output=embed",
   whatsappMessage:
-    "🙏 You're invited to Rahul & Priya's Engagement!\n📅 Sunday, 28th June 2026\n📍 The Grand Celebration Hall, Rajkot\n\nView invite: ",
+    "🙏 You're invited to Deven & Nitya's Engagement!\n📅 Sunday, 28th June 2026\n📍 The Grand Celebration Hall, Rajkot\n\nView invite: ",
   contact: "+91 98765 43210",
   calendar: {
-    title: "Rahul & Priya Engagement",
-    description: "Engagement ceremony of Rahul & Priya",
+    title: "Deven & Nitya Engagement",
+    description: "Engagement ceremony of Deven & Nitya",
     location: "The Grand Celebration Hall, Rajkot",
     start: "20260628T053000Z", // 11:00 IST
     end: "20260628T093000Z",   // 15:00 IST
@@ -304,7 +304,7 @@ function Index() {
               {/* Content printed inside the pichwai frame */}
               <div className="absolute inset-0 flex flex-col items-center px-[14%] pt-[22%] pb-[22%] text-center text-[var(--color-gold-light)]">
                 <p className="font-display text-[10px] uppercase tracking-[0.35em] text-[var(--color-gold)]">
-                  With blessings of our elders
+                  By Grace of God
                 </p>
                 <div className="my-2 h-px w-2/3 bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent" />
                 <p className="font-display text-[11px] font-semibold tracking-[0.2em] text-[var(--color-gold-light)]">
@@ -321,7 +321,7 @@ function Index() {
                 </p>
                 <p className="mt-3 text-[10px] italic text-[var(--color-gold-light)]/70">~ of ~</p>
                 <h2 className="mt-2 font-display text-2xl font-black leading-tight text-[var(--color-gold)] drop-shadow-[0_2px_4px_rgba(0,0,0,.5)]">
-                  RAHUL <span className="text-[var(--color-gold-light)]">&</span> PRIYA
+                  DEVEN <span className="text-[var(--color-gold-light)]">&</span> NITYA
                 </h2>
 
                 <div className="mt-auto w-full space-y-1.5 text-[11px]">
@@ -460,7 +460,7 @@ function Index() {
             <footer className="pt-2 text-center text-[var(--color-gold-light)]">
               <p className="text-lg">🪔 ════════ 🪔</p>
               <p className="mt-2 text-sm">
-                Made with <span className="text-[#ff6b8a]">❤️</span> for Rahul & Priya
+                Made with <span className="text-[#ff6b8a]">❤️</span> for Deven & Nitya
               </p>
             </footer>
           </div>
