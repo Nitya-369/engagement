@@ -236,7 +236,7 @@ function Index() {
         )}
 
         {/* DOOR overlay */}
-        {(phase === "door" || (phase !== "loading" && !doorOpen)) && phase !== "loading" && (
+        {phase === "door" && (
           <div
             className={`absolute inset-0 z-40 transition-opacity duration-700 ${
               doorOpen ? "opacity-0 pointer-events-none" : "opacity-100"
