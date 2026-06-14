@@ -53,19 +53,22 @@ function useCountdown(target: string) {
   return { days: pad(days), hours: pad(hours), mins: pad(mins) };
 }
 
+function makePetals() {
+  return Array.from({ length: 18 }, (_, i) => ({
+    left: Math.random() * 100,
+    delay: Math.random() * 10,
+    duration: 14 + Math.random() * 12,
+    size: 10 + Math.random() * 10,
+    color: ["#e74c3c", "#ff6b8a", "#ff9ff3", "#ffb3c1"][i % 4],
+    rot: Math.random() * 360,
+  }));
+}
+
 function Petals() {
-  const petals = useMemo(
-    () =>
-      Array.from({ length: 18 }, (_, i) => ({
-        left: Math.random() * 100,
-        delay: Math.random() * 10,
-        duration: 14 + Math.random() * 12,
-        size: 10 + Math.random() * 10,
-        color: ["#e74c3c", "#ff6b8a", "#ff9ff3", "#ffb3c1"][i % 4],
-        rot: Math.random() * 360,
-      })),
-    [],
-  );
+  const [petals, setPetals] = useState<ReturnType<typeof makePetals>>([]);
+  useEffect(() => {
+    setPetals(makePetals());
+  }, []);
   return (
     <div className="pointer-events-none fixed inset-0 z-[500] overflow-hidden">
       {petals.map((p, i) => (
