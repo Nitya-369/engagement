@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Deven & Nitya Engagement" },
+      { name: "description", content: "Join us in celebrating the engagement of Deven and Nitya. View event details, schedule, venue information, and special moments with our family and friends." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Deven & Nitya Engagement" },
+      { property: "og:description", content: "Join us in celebrating the engagement of Deven and Nitya. View event details, schedule, venue information, and special moments with our family and friends." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Deven & Nitya Engagement" },
+      { name: "twitter:description", content: "Join us in celebrating the engagement of Deven and Nitya. View event details, schedule, venue information, and special moments with our family and friends." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/018a7a2e-cc2c-410c-97bd-c998674cd9e8" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/018a7a2e-cc2c-410c-97bd-c998674cd9e8" },
     ],
     links: [
       {
@@ -95,7 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&family=Poppins:wght@300;400;500;600&family=Noto+Sans+Gujarati:wght@400;600;700&family=Great+Vibes&family=Cinzel+Decorative:wght@700;900&family=Tangerine:wght@700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&family=Poppins:wght@300;400;500;600&family=Noto+Sans+Gujarati:wght@400;600;700&display=swap",
       },
     ],
   }),
