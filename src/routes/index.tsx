@@ -39,12 +39,13 @@ const CONFIG = {
 
 function useCountdown(target: string) {
   const t = useMemo(() => new Date(target).getTime(), [target]);
-  const [now, setNow] = useState(() => Date.now());
+  const [now, setNow] = useState<number | null>(null);
   useEffect(() => {
+    setNow(Date.now());
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);
-  const diff = Math.max(0, t - now);
+  const diff = now === null ? 0 : Math.max(0, t - now);
   const days = Math.floor(diff / 86400000);
   const hours = Math.floor((diff % 86400000) / 3600000);
   const mins = Math.floor((diff % 3600000) / 60000);
