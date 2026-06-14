@@ -288,7 +288,7 @@ function Index() {
         ref={inviteRef}
         className="relative"
         style={{
-          backgroundImage: `url(${pichwaiFrame.url})`,
+          backgroundImage: `url(${pichwaiBg.url})`,
           backgroundSize: "cover",
           backgroundAttachment: "fixed",
           backgroundPosition: "center",
