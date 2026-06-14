@@ -8,6 +8,9 @@
   --font-display: "Playfair Display", serif;
   --font-body: "Poppins", sans-serif;
   --font-guj: "Noto Sans Gujarati", sans-serif;
+  --font-royal: "Cinzel Decorative", serif;
+  --font-cursive: "Great Vibes", cursive;
+  --font-tangerine: "Tangerine", cursive;
   --color-maroon: #800020;
   --color-gold: #D4AF37;
   --color-gold-light: #F5E6A3;
@@ -38,6 +41,19 @@
 @keyframes confetti-fall {
   0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
   100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes shlok-pop {
+  0% { transform: scale(.3) rotate(-8deg); opacity: 0; filter: blur(20px); }
+  60% { transform: scale(1.08) rotate(1deg); opacity: 1; filter: blur(0); }
+  100% { transform: scale(1) rotate(0); opacity: 1; filter: blur(0); }
+}
+@keyframes ring-rotate {
+  to { transform: rotate(360deg); }
+}
+@keyframes shlok-glow {
+  0%,100% { text-shadow: 0 0 18px rgba(255,210,120,.7), 0 0 40px rgba(212,175,55,.5); }
+  50% { text-shadow: 0 0 36px rgba(255,230,160,.95), 0 0 80px rgba(212,175,55,.7); }
 }
 
 /*
