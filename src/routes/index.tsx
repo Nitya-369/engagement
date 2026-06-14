@@ -345,14 +345,32 @@ function Index() {
             >
               {/* Content printed inside the pichwai frame */}
               <div className="absolute inset-0 flex flex-col items-center justify-center px-[14%] text-center text-[var(--color-gold-light)]">
-                <p className="font-display text-[11px] uppercase tracking-[0.35em] text-[var(--color-gold)]">
+                <p
+                  className="font-cursive text-2xl text-[var(--color-gold)] drop-shadow-[0_2px_6px_rgba(0,0,0,.55)]"
+                  style={{ textShadow: "0 0 14px rgba(212,175,55,.45)" }}
+                >
                   By grace of god
                 </p>
-                <p className="mt-4 font-display text-[10px] uppercase tracking-[0.3em] text-[var(--color-gold-light)]/80">
-                  engagement of
+                <div className="my-3 flex items-center gap-2 text-[var(--color-gold)]/80">
+                  <span className="h-px w-8 bg-[var(--color-gold)]/70" />
+                  <span className="text-xs">✦</span>
+                  <span className="h-px w-8 bg-[var(--color-gold)]/70" />
+                </div>
+                <p className="font-royal text-[11px] uppercase tracking-[0.45em] text-[var(--color-gold-light)]/90">
+                  Engagement of
                 </p>
-                <h2 className="mt-3 font-display text-3xl font-black leading-tight text-[var(--color-gold)] drop-shadow-[0_2px_4px_rgba(0,0,0,.5)]">
-                  DEVEN <span className="text-[var(--color-gold-light)]">&</span> NITYA
+                <h2
+                  className="mt-3 font-cursive text-[2.6rem] leading-[1] text-[var(--color-gold)]"
+                  style={{ textShadow: "0 2px 10px rgba(0,0,0,.55), 0 0 22px rgba(212,175,55,.5)" }}
+                >
+                  Deven
+                </h2>
+                <p className="my-1 font-royal text-lg italic text-[var(--color-gold-light)]">&amp;</p>
+                <h2
+                  className="font-cursive text-[2.6rem] leading-[1] text-[var(--color-gold)]"
+                  style={{ textShadow: "0 2px 10px rgba(0,0,0,.55), 0 0 22px rgba(212,175,55,.5)" }}
+                >
+                  Nitya
                 </h2>
               </div>
             </article>
