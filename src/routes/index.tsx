@@ -302,42 +302,16 @@ function Index() {
               }}
             >
               {/* Content printed inside the pichwai frame */}
-              <div className="absolute inset-0 flex flex-col items-center px-[14%] pt-[22%] pb-[22%] text-center text-[var(--color-gold-light)]">
-                <p className="font-display text-[10px] uppercase tracking-[0.35em] text-[var(--color-gold)]">
-                  By Grace of God
+              <div className="absolute inset-0 flex flex-col items-center justify-center px-[14%] text-center text-[var(--color-gold-light)]">
+                <p className="font-display text-[11px] uppercase tracking-[0.35em] text-[var(--color-gold)]">
+                  By grace of god
                 </p>
-                <div className="my-2 h-px w-2/3 bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent" />
-                <p className="font-display text-[11px] font-semibold tracking-[0.2em] text-[var(--color-gold-light)]">
-                  PATEL <span className="text-[var(--color-gold)]">&</span> SHAH FAMILY
+                <p className="mt-4 font-display text-[10px] uppercase tracking-[0.3em] text-[var(--color-gold-light)]/80">
+                  engagement of
                 </p>
-                <p className="mt-3 text-[11px] italic text-[var(--color-gold-light)]/80">
-                  cordially invite you to the
-                </p>
-                <p className="mt-1 font-guj text-2xl font-bold text-[var(--color-gold)]">
-                  સગાઈ
-                </p>
-                <p className="font-display text-[10px] tracking-[0.45em] text-[var(--color-gold-light)]/90">
-                  ENGAGEMENT
-                </p>
-                <p className="mt-3 text-[10px] italic text-[var(--color-gold-light)]/70">~ of ~</p>
-                <h2 className="mt-2 font-display text-2xl font-black leading-tight text-[var(--color-gold)] drop-shadow-[0_2px_4px_rgba(0,0,0,.5)]">
+                <h2 className="mt-3 font-display text-3xl font-black leading-tight text-[var(--color-gold)] drop-shadow-[0_2px_4px_rgba(0,0,0,.5)]">
                   DEVEN <span className="text-[var(--color-gold-light)]">&</span> NITYA
                 </h2>
-
-                <div className="mt-auto w-full space-y-1.5 text-[11px]">
-                  <p className="font-semibold text-[var(--color-gold-light)]">
-                    📅 Sunday, 28th June 2026
-                  </p>
-                  <p className="text-[var(--color-gold-light)]/80">
-                    🕐 11:00 AM &middot; Muhurat 11:30 AM
-                  </p>
-                  <p className="text-[var(--color-gold-light)]/80">
-                    📍 The Grand Celebration Hall, Rajkot
-                  </p>
-                  <p className="text-[10px] italic text-[var(--color-gold-light)]/70">
-                    Dress code: Traditional / Ethnic
-                  </p>
-                </div>
               </div>
             </article>
 
