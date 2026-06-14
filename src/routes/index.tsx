@@ -195,15 +195,52 @@ function Index() {
 
       {/* HERO: door + sunrise + shlok stacked */}
       <section className="relative h-[100svh] w-full overflow-hidden">
-        {/* Sunrise background (revealed once doors open) */}
+        {/* Sunrise (mandir) background — blurs during shlok phase */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 transition-[filter,transform] duration-[1200ms] ease-out"
           style={{
             backgroundImage: `url(${sunriseAsset.url})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
+            filter: phase === "sunrise" ? "blur(14px) brightness(.55) saturate(1.2)" : "none",
+            transform: phase === "sunrise" ? "scale(1.08)" : "scale(1)",
           }}
         />
+        {phase === "sunrise" && (
+          <div className="absolute inset-0 z-30 flex items-center justify-center bg-gradient-to-b from-black/40 via-transparent to-black/60 px-6">
+            {/* Rotating golden ring */}
+            <div
+              className="pointer-events-none absolute h-[88vw] max-h-[420px] w-[88vw] max-w-[420px] rounded-full"
+              style={{
+                background:
+                  "conic-gradient(from 0deg, transparent, rgba(212,175,55,.0) 30%, rgba(255,220,120,.65) 50%, rgba(212,175,55,0) 70%, transparent)",
+                animation: "ring-rotate 6s linear infinite",
+                filter: "blur(1px)",
+              }}
+            />
+            <div
+              className="relative text-center"
+              style={{ animation: "shlok-pop 1.1s cubic-bezier(.2,.9,.25,1.2) both" }}
+            >
+              <div className="mx-auto mb-4 text-5xl" style={{ animation: "soft-pulse 1.8s ease-in-out infinite" }}>
+                🕉️
+              </div>
+              <p
+                className="font-guj text-2xl font-bold leading-relaxed text-[var(--color-gold-light)]"
+                style={{ animation: "shlok-glow 2.4s ease-in-out infinite" }}
+              >
+                વક્રતુંડ મહાકાય<br />સૂર્યકોટિ સમપ્રભ
+              </p>
+              <p className="mt-3 font-guj text-base text-[var(--color-gold-light)]/90">
+                નિર્વિઘ્નં કુરુ મે દેવ<br />સર્વકાર્યેષુ સર્વદા
+              </p>
+              <div className="mx-auto mt-4 h-px w-32 bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent" />
+              <p className="mt-3 font-cursive text-2xl text-[var(--color-gold)]">
+                Shubh Aarambh
+              </p>
+            </div>
+          </div>
+        )}
         {/* DOOR overlay */}
         {phase === "door" && (
           <div
@@ -308,49 +345,129 @@ function Index() {
             >
               {/* Content printed inside the pichwai frame */}
               <div className="absolute inset-0 flex flex-col items-center justify-center px-[14%] text-center text-[var(--color-gold-light)]">
-                <p className="font-display text-[11px] uppercase tracking-[0.35em] text-[var(--color-gold)]">
+                <p
+                  className="font-cursive text-2xl text-[var(--color-gold)] drop-shadow-[0_2px_6px_rgba(0,0,0,.55)]"
+                  style={{ textShadow: "0 0 14px rgba(212,175,55,.45)" }}
+                >
                   By grace of god
                 </p>
-                <p className="mt-4 font-display text-[10px] uppercase tracking-[0.3em] text-[var(--color-gold-light)]/80">
-                  engagement of
+                <div className="my-3 flex items-center gap-2 text-[var(--color-gold)]/80">
+                  <span className="h-px w-8 bg-[var(--color-gold)]/70" />
+                  <span className="text-xs">✦</span>
+                  <span className="h-px w-8 bg-[var(--color-gold)]/70" />
+                </div>
+                <p className="font-royal text-[11px] uppercase tracking-[0.45em] text-[var(--color-gold-light)]/90">
+                  Engagement of
                 </p>
-                <h2 className="mt-3 font-display text-3xl font-black leading-tight text-[var(--color-gold)] drop-shadow-[0_2px_4px_rgba(0,0,0,.5)]">
-                  DEVEN <span className="text-[var(--color-gold-light)]">&</span> NITYA
+                <h2
+                  className="mt-3 font-cursive text-[2.6rem] leading-[1] text-[var(--color-gold)]"
+                  style={{ textShadow: "0 2px 10px rgba(0,0,0,.55), 0 0 22px rgba(212,175,55,.5)" }}
+                >
+                  Deven
+                </h2>
+                <p className="my-1 font-royal text-lg italic text-[var(--color-gold-light)]">&amp;</p>
+                <h2
+                  className="font-cursive text-[2.6rem] leading-[1] text-[var(--color-gold)]"
+                  style={{ textShadow: "0 2px 10px rgba(0,0,0,.55), 0 0 22px rgba(212,175,55,.5)" }}
+                >
+                  Nitya
                 </h2>
               </div>
             </article>
 
-            {/* TIMELINE */}
-            <section className="relative overflow-hidden rounded-2xl border border-[var(--color-gold)]/40 bg-[var(--color-pichwai)]/80 p-6 shadow-[0_0_30px_rgba(212,175,55,.15)] ring-1 ring-[var(--color-gold)]/40">
-              <div className="pointer-events-none absolute -top-10 -right-10 text-[120px] opacity-10">🪷</div>
-              <div className="pointer-events-none absolute -bottom-12 -left-10 text-[120px] opacity-10">🪷</div>
-              <h3 className="relative text-center font-guj text-2xl font-bold text-[var(--color-gold)]">
-                શુભ કાર્યક્રમ
-              </h3>
-              <p className="relative text-center text-xs uppercase tracking-widest text-[var(--color-gold-light)]/70">
-                Auspicious Events
-              </p>
-              <div className="relative mx-auto my-3 h-px w-2/3 bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent" />
-              <ol className="relative mt-4 ml-4 space-y-4 border-l-2 border-[var(--color-gold)]/70 pl-6">
-                {timeline.map((e, i) => (
-                  <li key={i} className="relative">
-                    <span className="absolute -left-[34px] top-2 grid h-7 w-7 place-items-center rounded-full bg-gradient-to-b from-[var(--color-gold)] to-[#9c7a1e] text-xs shadow-md ring-2 ring-[var(--color-pichwai)]">
-                      {e.icon}
-                    </span>
-                    <div className="rounded-lg border border-[var(--color-gold)]/40 bg-[var(--color-pichwai)]/60 p-3 backdrop-blur-sm">
-                      <div className="flex items-baseline justify-between">
-                        <p className="font-display font-bold text-[var(--color-gold)]">
-                          {e.title}
-                        </p>
-                        <p className="text-xs font-semibold text-[var(--color-gold-light)]">
-                          {e.time}
-                        </p>
-                      </div>
-                      <p className="mt-1 text-xs text-[var(--color-gold-light)]/70">{e.note}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
+            {/* TIMELINE — zig-zag with ornate medallions */}
+            <section className="relative overflow-hidden rounded-2xl border border-[var(--color-gold)]/40 bg-gradient-to-b from-[var(--color-pichwai)]/90 to-[#0f0f3a]/90 p-6 shadow-[0_0_40px_rgba(212,175,55,.18)] ring-1 ring-[var(--color-gold)]/30">
+              {/* Corner flourishes */}
+              <div className="pointer-events-none absolute -top-8 -right-8 text-[140px] opacity-[0.08] rotate-12">🪷</div>
+              <div className="pointer-events-none absolute -bottom-10 -left-10 text-[140px] opacity-[0.08] -rotate-12">🪷</div>
+              <div className="pointer-events-none absolute top-3 left-3 text-xl text-[var(--color-gold)]/60">❦</div>
+              <div className="pointer-events-none absolute top-3 right-3 text-xl text-[var(--color-gold)]/60 scale-x-[-1]">❦</div>
+
+              <div className="relative text-center">
+                <p className="font-cursive text-4xl text-[var(--color-gold)]" style={{ textShadow: "0 0 18px rgba(212,175,55,.4)" }}>
+                  Rituals
+                </p>
+                <h3 className="font-guj text-xl font-bold text-[var(--color-gold-light)]">શુભ કાર્યક્રમ</h3>
+                <div className="mx-auto mt-2 flex items-center justify-center gap-2">
+                  <span className="h-px w-10 bg-gradient-to-r from-transparent to-[var(--color-gold)]" />
+                  <span className="text-[var(--color-gold)]">✦</span>
+                  <span className="h-px w-10 bg-gradient-to-l from-transparent to-[var(--color-gold)]" />
+                </div>
+              </div>
+
+              {/* Zig-zag spine */}
+              <div className="relative mt-8">
+                {/* Vertical center line */}
+                <div className="pointer-events-none absolute left-1/2 top-0 h-full w-px -translate-x-1/2">
+                  <div className="h-full w-full bg-[repeating-linear-gradient(to_bottom,var(--color-gold)_0_6px,transparent_6px_12px)] opacity-60" />
+                </div>
+
+                <ol className="relative space-y-7">
+                  {timeline.map((e, i) => {
+                    const left = i % 2 === 0;
+                    return (
+                      <li key={i} className="relative grid grid-cols-[1fr_auto_1fr] items-center gap-2">
+                        {/* Left side card */}
+                        <div className={left ? "" : "invisible"}>
+                          {left && (
+                            <div className="rounded-xl border border-[var(--color-gold)]/50 bg-black/40 p-3 text-right backdrop-blur-sm shadow-[0_4px_20px_rgba(0,0,0,.4)]">
+                              <p className="font-royal text-[10px] uppercase tracking-[0.25em] text-[var(--color-gold-light)]">
+                                {e.time}
+                              </p>
+                              <p className="mt-1 font-cursive text-2xl leading-tight text-[var(--color-gold)]">
+                                {e.title}
+                              </p>
+                              <p className="mt-0.5 text-[10px] italic text-[var(--color-gold-light)]/70">
+                                {e.note}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Center medallion */}
+                        <div className="relative z-10 grid place-items-center">
+                          <div
+                            className="absolute h-14 w-14 rounded-full"
+                            style={{
+                              background:
+                                "conic-gradient(from 0deg, #D4AF37, #F5E6A3, #9c7a1e, #D4AF37)",
+                              animation: "ring-rotate 8s linear infinite",
+                              filter: "blur(2px)",
+                              opacity: 0.7,
+                            }}
+                          />
+                          <div
+                            className="relative grid h-11 w-11 place-items-center rounded-full text-base shadow-[0_4px_12px_rgba(0,0,0,.5)] ring-2 ring-[var(--color-gold-light)]"
+                            style={{
+                              background:
+                                "radial-gradient(circle at 30% 30%, #F5E6A3, #D4AF37 55%, #6b5012)",
+                            }}
+                          >
+                            {e.icon}
+                          </div>
+                        </div>
+
+                        {/* Right side card */}
+                        <div className={!left ? "" : "invisible"}>
+                          {!left && (
+                            <div className="rounded-xl border border-[var(--color-gold)]/50 bg-black/40 p-3 text-left backdrop-blur-sm shadow-[0_4px_20px_rgba(0,0,0,.4)]">
+                              <p className="font-royal text-[10px] uppercase tracking-[0.25em] text-[var(--color-gold-light)]">
+                                {e.time}
+                              </p>
+                              <p className="mt-1 font-cursive text-2xl leading-tight text-[var(--color-gold)]">
+                                {e.title}
+                              </p>
+                              <p className="mt-0.5 text-[10px] italic text-[var(--color-gold-light)]/70">
+                                {e.note}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </div>
             </section>
 
             {/* COUNTDOWN */}
