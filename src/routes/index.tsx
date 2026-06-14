@@ -195,15 +195,52 @@ function Index() {
 
       {/* HERO: door + sunrise + shlok stacked */}
       <section className="relative h-[100svh] w-full overflow-hidden">
-        {/* Sunrise background (revealed once doors open) */}
+        {/* Sunrise (mandir) background — blurs during shlok phase */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 transition-[filter,transform] duration-[1200ms] ease-out"
           style={{
             backgroundImage: `url(${sunriseAsset.url})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
+            filter: phase === "sunrise" ? "blur(14px) brightness(.55) saturate(1.2)" : "none",
+            transform: phase === "sunrise" ? "scale(1.08)" : "scale(1)",
           }}
         />
+        {phase === "sunrise" && (
+          <div className="absolute inset-0 z-30 flex items-center justify-center bg-gradient-to-b from-black/40 via-transparent to-black/60 px-6">
+            {/* Rotating golden ring */}
+            <div
+              className="pointer-events-none absolute h-[88vw] max-h-[420px] w-[88vw] max-w-[420px] rounded-full"
+              style={{
+                background:
+                  "conic-gradient(from 0deg, transparent, rgba(212,175,55,.0) 30%, rgba(255,220,120,.65) 50%, rgba(212,175,55,0) 70%, transparent)",
+                animation: "ring-rotate 6s linear infinite",
+                filter: "blur(1px)",
+              }}
+            />
+            <div
+              className="relative text-center"
+              style={{ animation: "shlok-pop 1.1s cubic-bezier(.2,.9,.25,1.2) both" }}
+            >
+              <div className="mx-auto mb-4 text-5xl" style={{ animation: "soft-pulse 1.8s ease-in-out infinite" }}>
+                🕉️
+              </div>
+              <p
+                className="font-guj text-2xl font-bold leading-relaxed text-[var(--color-gold-light)]"
+                style={{ animation: "shlok-glow 2.4s ease-in-out infinite" }}
+              >
+                વક્રતુંડ મહાકાય<br />સૂર્યકોટિ સમપ્રભ
+              </p>
+              <p className="mt-3 font-guj text-base text-[var(--color-gold-light)]/90">
+                નિર્વિઘ્નં કુરુ મે દેવ<br />સર્વકાર્યેષુ સર્વદા
+              </p>
+              <div className="mx-auto mt-4 h-px w-32 bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent" />
+              <p className="mt-3 font-cursive text-2xl text-[var(--color-gold)]">
+                Shubh Aarambh
+              </p>
+            </div>
+          </div>
+        )}
         {/* DOOR overlay */}
         {phase === "door" && (
           <div
