@@ -3,7 +3,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import doorAsset from "@/assets/door-bg.jpg.asset.json";
 import sunriseAsset from "@/assets/sunrise-bg.jpg.asset.json";
 import invitationAsset from "@/assets/invitation-bg.jpg.asset.json";
-import pichwaiFrame from "@/assets/pichwai-frame.jpg.asset.json";
+import pichwaiFrame from "@/assets/pichwai-frame-v2.jpg.asset.json";
+import pichwaiBg from "@/assets/pichwai-frame.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
