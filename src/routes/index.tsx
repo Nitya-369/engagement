@@ -340,8 +340,11 @@ function Index() {
         <div className="bg-[var(--color-pichwai)]/85 backdrop-blur-sm">
           <div className="mx-auto max-w-md px-5 py-12 space-y-10">
             {/* INVITATION CARD */}
-            <article
-              className="relative w-full overflow-hidden rounded-2xl shadow-2xl"
+            <button
+              type="button"
+              onClick={() => setZoom(true)}
+              aria-label="Open invitation in large view"
+              className="group relative block w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-[var(--color-gold)]/40 transition-transform active:scale-[0.99]"
               style={{
                 aspectRatio: "1080 / 1920",
                 backgroundImage: `url(${pichwaiFrame.url})`,
@@ -352,7 +355,7 @@ function Index() {
               {/* Content printed inside the pichwai frame */}
               <div className="absolute inset-0 flex flex-col items-center justify-center px-[14%] text-center text-[var(--color-gold-light)]">
                 <p
-                  className="font-cursive text-2xl text-[var(--color-gold)] drop-shadow-[0_2px_6px_rgba(0,0,0,.55)]"
+                  className="font-tangerine text-4xl text-[var(--color-gold)] drop-shadow-[0_2px_6px_rgba(0,0,0,.55)]"
                   style={{ textShadow: "0 0 14px rgba(212,175,55,.45)" }}
                 >
                   By grace of god
@@ -366,20 +369,31 @@ function Index() {
                   Engagement of
                 </p>
                 <h2
-                  className="mt-3 font-cursive text-[2.6rem] leading-[1] text-[var(--color-gold)]"
+                  className="mt-3 font-tangerine text-[4.2rem] leading-[1] text-[var(--color-gold)]"
                   style={{ textShadow: "0 2px 10px rgba(0,0,0,.55), 0 0 22px rgba(212,175,55,.5)" }}
                 >
                   Deven
                 </h2>
-                <p className="my-1 font-royal text-lg italic text-[var(--color-gold-light)]">&amp;</p>
+                <p className="my-1 font-tangerine text-3xl italic text-[var(--color-gold-light)]">&amp;</p>
                 <h2
-                  className="font-cursive text-[2.6rem] leading-[1] text-[var(--color-gold)]"
+                  className="font-tangerine text-[4.2rem] leading-[1] text-[var(--color-gold)]"
                   style={{ textShadow: "0 2px 10px rgba(0,0,0,.55), 0 0 22px rgba(212,175,55,.5)" }}
                 >
                   Nitya
                 </h2>
+                <div className="mt-5 flex items-center gap-2 text-[var(--color-gold)]/80">
+                  <span className="h-px w-6 bg-[var(--color-gold)]/70" />
+                  <span className="text-[10px]">✦</span>
+                  <span className="h-px w-6 bg-[var(--color-gold)]/70" />
+                </div>
+                <p className="mt-2 font-royal text-[10px] uppercase tracking-[0.35em] text-[var(--color-gold-light)]/90">
+                  12 · 07 · 2026 · 8:30 AM
+                </p>
               </div>
-            </article>
+              <span className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-black/55 px-3 py-1 text-[10px] tracking-widest text-[var(--color-gold-light)] opacity-90 group-hover:opacity-100">
+                ✦ TAP TO ENLARGE ✦
+              </span>
+            </button>
 
             {/* TIMELINE — zig-zag with ornate medallions */}
             <section className="relative overflow-hidden rounded-2xl border border-[var(--color-gold)]/40 bg-gradient-to-b from-[var(--color-pichwai)]/90 to-[#0f0f3a]/90 p-6 shadow-[0_0_40px_rgba(212,175,55,.18)] ring-1 ring-[var(--color-gold)]/30">
