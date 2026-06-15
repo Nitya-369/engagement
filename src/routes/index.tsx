@@ -21,20 +21,17 @@ export const Route = createFileRoute("/")({
 });
 
 const CONFIG = {
-  eventDate: "2026-06-28T11:00:00+05:30",
-  mapsUrl: "https://maps.google.com/?q=22.3039,70.8022",
+  eventDate: "2026-07-12T08:30:00+05:30",
+  eventDateLabel: "Sunday, 12th July 2026",
+  venueName: "RIO CARNIVAL",
+  venueSub: "Multi Cuisine Restaurant & Banquets",
+  venueAddress: "Gota, SG Highway, Ahmedabad",
+  mapsUrl: "https://share.google/Ab0b7UdsKy7qNklAS",
   mapEmbed:
-    "https://www.google.com/maps?q=22.3039,70.8022&z=14&output=embed",
+    "https://www.google.com/maps?q=RIO+CARNIVAL+Gota+SG+Highway+Ahmedabad&output=embed",
   whatsappMessage:
-    "🙏 You're invited to Deven & Nitya's Engagement!\n📅 Sunday, 28th June 2026\n📍 The Grand Celebration Hall, Rajkot\n\nView invite: ",
+    "🙏 You're invited to Deven & Nitya's Engagement!\n📅 Sunday, 12th July 2026 · 8:30 AM\n📍 RIO CARNIVAL, Gota, SG Highway, Ahmedabad\n\nView invite: ",
   contact: "+91 98765 43210",
-  calendar: {
-    title: "Deven & Nitya Engagement",
-    description: "Engagement ceremony of Deven & Nitya",
-    location: "The Grand Celebration Hall, Rajkot",
-    start: "20260628T053000Z", // 11:00 IST
-    end: "20260628T093000Z",   // 15:00 IST
-  },
 };
 
 function useCountdown(target: string) {
@@ -54,14 +51,24 @@ function useCountdown(target: string) {
 }
 
 function makePetals() {
-  return Array.from({ length: 18 }, (_, i) => ({
-    left: Math.random() * 100,
-    delay: Math.random() * 10,
-    duration: 14 + Math.random() * 12,
-    size: 10 + Math.random() * 10,
-    color: ["#e74c3c", "#ff6b8a", "#ff9ff3", "#ffb3c1"][i % 4],
-    rot: Math.random() * 360,
-  }));
+  const palettes = [
+    { a: "#ff5d7a", b: "#b8002b", c: "#7a0017" }, // crimson rose
+    { a: "#ffa8c0", b: "#e0476b", c: "#8a1d3a" }, // pink rose
+    { a: "#ffd0c0", b: "#e36a3a", c: "#7a2a10" }, // peach rose
+    { a: "#ffe0e6", b: "#ff7a9a", c: "#a3334f" }, // blush
+  ];
+  return Array.from({ length: 22 }, (_, i) => {
+    const p = palettes[i % palettes.length];
+    return {
+      left: Math.random() * 100,
+      delay: Math.random() * 12,
+      duration: 12 + Math.random() * 14,
+      size: 18 + Math.random() * 18,
+      rot: Math.random() * 360,
+      tilt: -25 + Math.random() * 50,
+      ...p,
+    };
+  });
 }
 
 function Petals() {
@@ -79,15 +86,34 @@ function Petals() {
             left: `${p.left}%`,
             top: "-5vh",
             width: p.size,
-            height: p.size * 1.4,
-            background: p.color,
-            borderRadius: "150% 0 150% 0",
-            transform: `rotate(${p.rot}deg)`,
-            animation: `petal-fall ${p.duration}s linear ${p.delay}s infinite`,
-            opacity: 0.85,
-            boxShadow: "0 0 6px rgba(0,0,0,.15)",
+            height: p.size,
+            animation: `petal-sway ${p.duration}s cubic-bezier(.45,.05,.55,.95) ${p.delay}s infinite`,
+            filter: "drop-shadow(0 4px 6px rgba(120,0,30,.35))",
+            transformOrigin: "center",
           }}
-        />
+        >
+          <svg viewBox="0 0 32 32" width="100%" height="100%" style={{ transform: `rotate(${p.tilt}deg)` }}>
+            <defs>
+              <radialGradient id={`pg${i}`} cx="35%" cy="30%" r="80%">
+                <stop offset="0%" stopColor={p.a} />
+                <stop offset="55%" stopColor={p.b} />
+                <stop offset="100%" stopColor={p.c} />
+              </radialGradient>
+            </defs>
+            <path
+              d="M16 2 C24 6 30 14 28 22 C26 28 20 30 16 30 C12 30 6 28 4 22 C2 14 8 6 16 2 Z"
+              fill={`url(#pg${i})`}
+              opacity="0.95"
+            />
+            <path
+              d="M16 4 C16 14 16 22 16 30"
+              stroke={p.c}
+              strokeWidth="0.6"
+              opacity="0.4"
+              fill="none"
+            />
+          </svg>
+        </span>
       ))}
     </div>
   );
@@ -106,6 +132,7 @@ function Index() {
     { left: number; color: string; delay: number; rot: number }[]
   >([]);
   const inviteRef = useRef<HTMLDivElement>(null);
+  const [zoom, setZoom] = useState(false);
   const { days, hours, mins } = useCountdown(CONFIG.eventDate);
 
   useEffect(() => {
@@ -139,32 +166,6 @@ function Index() {
     setTimeout(() => setConfetti([]), 3500);
   };
 
-  const downloadIcs = () => {
-    const c = CONFIG.calendar;
-    const ics = [
-      "BEGIN:VCALENDAR",
-      "VERSION:2.0",
-      "PRODID:-//Engagement//EN",
-      "BEGIN:VEVENT",
-      `UID:${Date.now()}@invite`,
-      `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, "").split(".")[0]}Z`,
-      `DTSTART:${c.start}`,
-      `DTEND:${c.end}`,
-      `SUMMARY:${c.title}`,
-      `DESCRIPTION:${c.description}`,
-      `LOCATION:${c.location}`,
-      "END:VEVENT",
-      "END:VCALENDAR",
-    ].join("\r\n");
-    const blob = new Blob([ics], { type: "text/calendar" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "engagement.ics";
-    a.click();
-    URL.revokeObjectURL(url);
-  };
-
   const shareWhatsApp = () => {
     const url = typeof window !== "undefined" ? window.location.href : "";
     const msg = encodeURIComponent(CONFIG.whatsappMessage + url);
@@ -172,11 +173,10 @@ function Index() {
   };
 
   const timeline = [
-    { icon: "🪔", title: "Ganesh Pooja", time: "10:30 AM", note: "Seeking divine blessings" },
-    { icon: "🌾", title: "Gol Dhana", time: "11:00 AM", note: "Traditional ceremony" },
-    { icon: "💍", title: "Ring Ceremony", time: "11:30 AM", note: "Exchange of rings" },
-    { icon: "📸", title: "Photo Session", time: "12:00 PM", note: "Capturing memories" },
-    { icon: "🍽️", title: "Lunch", time: "1:00 PM", note: "Traditional feast" },
+    { icon: "🪔", title: "Ganesh Pooja", time: "8:30 AM", note: "Seeking divine blessings" },
+    { icon: "🌾", title: "Gol Dhana", time: "9:00 AM", note: "Traditional ceremony" },
+    { icon: "💍", title: "Ring Ceremony", time: "9:30 AM", note: "Exchange of rings" },
+    { icon: "🍽️", title: "Lunch", time: "11:00 AM", note: "Traditional feast" },
   ];
 
   return (
@@ -305,12 +305,18 @@ function Index() {
             </button>
 
             {/* Bottom tap-to-open */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-10 z-10 text-center">
+            <div className="pointer-events-none absolute inset-x-0 bottom-12 z-10 text-center">
               <p
-                className="font-display text-lg tracking-[0.3em] text-[var(--color-gold-light)] drop-shadow-[0_2px_6px_rgba(0,0,0,.8)]"
-                style={{ animation: "soft-pulse 1.6s ease-in-out infinite" }}
+                className="font-tangerine text-6xl leading-none text-[var(--color-gold-light)] drop-shadow-[0_3px_10px_rgba(0,0,0,.9)]"
+                style={{
+                  animation: "tap-bounce 1.8s ease-in-out infinite",
+                  textShadow: "0 0 22px rgba(212,175,55,.55)",
+                }}
               >
-                ✨ Tap to Open ✨
+                ✦ Tap to Open ✦
+              </p>
+              <p className="mt-1 font-royal text-[10px] uppercase tracking-[0.45em] text-[var(--color-gold)]/85">
+                The Doors of Destiny
               </p>
             </div>
 
@@ -334,8 +340,11 @@ function Index() {
         <div className="bg-[var(--color-pichwai)]/85 backdrop-blur-sm">
           <div className="mx-auto max-w-md px-5 py-12 space-y-10">
             {/* INVITATION CARD */}
-            <article
-              className="relative w-full overflow-hidden rounded-2xl shadow-2xl"
+            <button
+              type="button"
+              onClick={() => setZoom(true)}
+              aria-label="Open invitation in large view"
+              className="group relative block w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-[var(--color-gold)]/40 transition-transform active:scale-[0.99]"
               style={{
                 aspectRatio: "1080 / 1920",
                 backgroundImage: `url(${pichwaiFrame.url})`,
@@ -346,7 +355,7 @@ function Index() {
               {/* Content printed inside the pichwai frame */}
               <div className="absolute inset-0 flex flex-col items-center justify-center px-[14%] text-center text-[var(--color-gold-light)]">
                 <p
-                  className="font-cursive text-2xl text-[var(--color-gold)] drop-shadow-[0_2px_6px_rgba(0,0,0,.55)]"
+                  className="font-tangerine text-4xl text-[var(--color-gold)] drop-shadow-[0_2px_6px_rgba(0,0,0,.55)]"
                   style={{ textShadow: "0 0 14px rgba(212,175,55,.45)" }}
                 >
                   By grace of god
@@ -360,20 +369,31 @@ function Index() {
                   Engagement of
                 </p>
                 <h2
-                  className="mt-3 font-cursive text-[2.6rem] leading-[1] text-[var(--color-gold)]"
+                  className="mt-3 font-tangerine text-[4.2rem] leading-[1] text-[var(--color-gold)]"
                   style={{ textShadow: "0 2px 10px rgba(0,0,0,.55), 0 0 22px rgba(212,175,55,.5)" }}
                 >
                   Deven
                 </h2>
-                <p className="my-1 font-royal text-lg italic text-[var(--color-gold-light)]">&amp;</p>
+                <p className="my-1 font-tangerine text-3xl italic text-[var(--color-gold-light)]">&amp;</p>
                 <h2
-                  className="font-cursive text-[2.6rem] leading-[1] text-[var(--color-gold)]"
+                  className="font-tangerine text-[4.2rem] leading-[1] text-[var(--color-gold)]"
                   style={{ textShadow: "0 2px 10px rgba(0,0,0,.55), 0 0 22px rgba(212,175,55,.5)" }}
                 >
                   Nitya
                 </h2>
+                <div className="mt-5 flex items-center gap-2 text-[var(--color-gold)]/80">
+                  <span className="h-px w-6 bg-[var(--color-gold)]/70" />
+                  <span className="text-[10px]">✦</span>
+                  <span className="h-px w-6 bg-[var(--color-gold)]/70" />
+                </div>
+                <p className="mt-2 font-royal text-[10px] uppercase tracking-[0.35em] text-[var(--color-gold-light)]/90">
+                  12 · 07 · 2026 · 8:30 AM
+                </p>
               </div>
-            </article>
+              <span className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-black/55 px-3 py-1 text-[10px] tracking-widest text-[var(--color-gold-light)] opacity-90 group-hover:opacity-100">
+                ✦ TAP TO ENLARGE ✦
+              </span>
+            </button>
 
             {/* TIMELINE — zig-zag with ornate medallions */}
             <section className="relative overflow-hidden rounded-2xl border border-[var(--color-gold)]/40 bg-gradient-to-b from-[var(--color-pichwai)]/90 to-[#0f0f3a]/90 p-6 shadow-[0_0_40px_rgba(212,175,55,.18)] ring-1 ring-[var(--color-gold)]/30">
@@ -387,7 +407,9 @@ function Index() {
                 <p className="font-cursive text-4xl text-[var(--color-gold)]" style={{ textShadow: "0 0 18px rgba(212,175,55,.4)" }}>
                   Rituals
                 </p>
-                <h3 className="font-guj text-xl font-bold text-[var(--color-gold-light)]">શુભ કાર્યક્રમ</h3>
+                <p className="font-royal text-[11px] uppercase tracking-[0.4em] text-[var(--color-gold-light)]/90">
+                  Sunday · 12 July 2026
+                </p>
                 <div className="mx-auto mt-2 flex items-center justify-center gap-2">
                   <span className="h-px w-10 bg-gradient-to-r from-transparent to-[var(--color-gold)]" />
                   <span className="text-[var(--color-gold)]">✦</span>
@@ -492,9 +514,20 @@ function Index() {
 
             {/* MAP */}
             <section className="rounded-2xl border border-[var(--color-gold)]/40 bg-[var(--color-pichwai)]/80 p-4 shadow-[0_0_30px_rgba(212,175,55,.15)]">
-              <p className="mb-3 text-center font-display font-bold text-[var(--color-gold)]">
-                📍 Venue Location
-              </p>
+              <div className="mb-3 text-center">
+                <p className="font-cursive text-3xl text-[var(--color-gold)]" style={{ textShadow: "0 0 14px rgba(212,175,55,.35)" }}>
+                  Venue
+                </p>
+                <p className="mt-1 font-royal text-base font-bold tracking-[0.18em] text-[var(--color-gold-light)]">
+                  {CONFIG.venueName}
+                </p>
+                <p className="text-[11px] italic text-[var(--color-gold-light)]/80">
+                  {CONFIG.venueSub}
+                </p>
+                <p className="text-[11px] text-[var(--color-gold-light)]/70">
+                  📍 {CONFIG.venueAddress}
+                </p>
+              </div>
               <div className="overflow-hidden rounded-lg ring-1 ring-[var(--color-gold)]/40">
                 <iframe
                   title="Venue map"
@@ -529,12 +562,6 @@ function Index() {
                   className="w-full rounded-xl bg-gradient-to-r from-[var(--color-gold)] to-[#9c7a1e] py-3 font-semibold text-[var(--color-pichwai)] shadow-lg active:scale-[0.98] disabled:opacity-80"
                 >
                   {rsvpDone ? "Thank You! ✓" : "💚 Yes, We'll Attend!"}
-                </button>
-                <button
-                  onClick={downloadIcs}
-                  className="w-full rounded-xl border-2 border-[var(--color-gold)] bg-transparent py-3 font-semibold text-[var(--color-gold-light)] active:scale-[0.98]"
-                >
-                  📅 Add to Calendar
                 </button>
                 <button
                   onClick={shareWhatsApp}
@@ -613,6 +640,80 @@ function Index() {
             >
               Close
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* INVITATION ZOOM MODAL */}
+      {zoom && (
+        <div
+          className="fixed inset-0 z-[960] flex items-center justify-center bg-black/85 p-4 animate-fade-in"
+          onClick={() => setZoom(false)}
+        >
+          <button
+            onClick={() => setZoom(false)}
+            className="absolute top-4 right-4 grid h-10 w-10 place-items-center rounded-full bg-[var(--color-maroon)] text-xl text-[var(--color-gold-light)] ring-2 ring-[var(--color-gold)]"
+            aria-label="Close"
+          >
+            ✕
+          </button>
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-h-[92vh] w-full max-w-[420px] overflow-hidden rounded-2xl shadow-2xl ring-2 ring-[var(--color-gold)]"
+            style={{
+              aspectRatio: "1080 / 1920",
+              backgroundImage: `url(${pichwaiFrame.url})`,
+              backgroundSize: "100% 100%",
+              backgroundRepeat: "no-repeat",
+              animation: "shlok-pop .7s cubic-bezier(.2,.9,.25,1.2) both",
+            }}
+          >
+            <div className="absolute inset-0 flex flex-col items-center justify-center px-[14%] text-center text-[var(--color-gold-light)]">
+              <p
+                className="font-tangerine text-5xl text-[var(--color-gold)]"
+                style={{ textShadow: "0 0 18px rgba(212,175,55,.55)" }}
+              >
+                By grace of god
+              </p>
+              <div className="my-4 flex items-center gap-2 text-[var(--color-gold)]/80">
+                <span className="h-px w-10 bg-[var(--color-gold)]/70" />
+                <span className="text-xs">✦</span>
+                <span className="h-px w-10 bg-[var(--color-gold)]/70" />
+              </div>
+              <p className="font-royal text-xs uppercase tracking-[0.5em] text-[var(--color-gold-light)]/95">
+                Engagement of
+              </p>
+              <h2
+                className="mt-4 font-tangerine text-[5.5rem] leading-[1] text-[var(--color-gold)]"
+                style={{ textShadow: "0 2px 10px rgba(0,0,0,.6), 0 0 26px rgba(212,175,55,.55)" }}
+              >
+                Deven
+              </h2>
+              <p className="my-1 font-tangerine text-4xl italic text-[var(--color-gold-light)]">&amp;</p>
+              <h2
+                className="font-tangerine text-[5.5rem] leading-[1] text-[var(--color-gold)]"
+                style={{ textShadow: "0 2px 10px rgba(0,0,0,.6), 0 0 26px rgba(212,175,55,.55)" }}
+              >
+                Nitya
+              </h2>
+              <div className="mt-6 flex items-center gap-2 text-[var(--color-gold)]/80">
+                <span className="h-px w-8 bg-[var(--color-gold)]/70" />
+                <span className="text-[10px]">✦</span>
+                <span className="h-px w-8 bg-[var(--color-gold)]/70" />
+              </div>
+              <p className="mt-3 font-royal text-[11px] uppercase tracking-[0.4em] text-[var(--color-gold-light)]/95">
+                Sunday · 12 July 2026
+              </p>
+              <p className="mt-1 font-royal text-[11px] tracking-[0.35em] text-[var(--color-gold-light)]/90">
+                8:30 AM onwards
+              </p>
+              <p className="mt-3 font-cursive text-xl text-[var(--color-gold)]">
+                {CONFIG.venueName}
+              </p>
+              <p className="text-[10px] italic text-[var(--color-gold-light)]/80">
+                {CONFIG.venueSub}
+              </p>
+            </div>
           </div>
         </div>
       )}
