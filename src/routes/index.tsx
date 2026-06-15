@@ -225,17 +225,26 @@ function Index() {
               <div className="mx-auto mb-4 text-5xl" style={{ animation: "soft-pulse 1.8s ease-in-out infinite" }}>
                 🕉️
               </div>
-              <p
-                className="font-guj text-2xl font-bold leading-relaxed text-[var(--color-gold-light)]"
+              <div
+                className="font-sanskrit text-[var(--color-gold-light)]"
                 style={{ animation: "shlok-glow 2.4s ease-in-out infinite" }}
+                lang="sa"
               >
-                વક્રતુંડ મહાકાય<br />સૂર્યકોટિ સમપ્રભ
-              </p>
-              <p className="mt-3 font-guj text-base text-[var(--color-gold-light)]/90">
-                નિર્વિઘ્નં કુરુ મે દેવ<br />સર્વકાર્યેષુ સર્વદા
-              </p>
-              <div className="mx-auto mt-4 h-px w-32 bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent" />
-              <p className="mt-3 font-cursive text-2xl text-[var(--color-gold)]">
+                <p className="text-3xl leading-[1.6] tracking-wide">
+                  स्नेहस्य विश्वासस्य च
+                </p>
+                <p className="mt-2 text-3xl leading-[1.6] tracking-wide">
+                  देवेन नित्या च
+                </p>
+                <p className="mt-2 text-3xl leading-[1.6] tracking-wide">
+                  सहजीवनव्रतस्य
+                </p>
+                <p className="mt-2 text-3xl leading-[1.6] tracking-wide">
+                  शुभारम्भः
+                </p>
+              </div>
+              <div className="mx-auto mt-5 h-px w-40 bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent" />
+              <p className="mt-4 font-cursive text-3xl text-[var(--color-gold)]">
                 Shubh Aarambh
               </p>
             </div>
