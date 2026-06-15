@@ -51,14 +51,24 @@ function useCountdown(target: string) {
 }
 
 function makePetals() {
-  return Array.from({ length: 18 }, (_, i) => ({
-    left: Math.random() * 100,
-    delay: Math.random() * 10,
-    duration: 14 + Math.random() * 12,
-    size: 10 + Math.random() * 10,
-    color: ["#e74c3c", "#ff6b8a", "#ff9ff3", "#ffb3c1"][i % 4],
-    rot: Math.random() * 360,
-  }));
+  const palettes = [
+    { a: "#ff5d7a", b: "#b8002b", c: "#7a0017" }, // crimson rose
+    { a: "#ffa8c0", b: "#e0476b", c: "#8a1d3a" }, // pink rose
+    { a: "#ffd0c0", b: "#e36a3a", c: "#7a2a10" }, // peach rose
+    { a: "#ffe0e6", b: "#ff7a9a", c: "#a3334f" }, // blush
+  ];
+  return Array.from({ length: 22 }, (_, i) => {
+    const p = palettes[i % palettes.length];
+    return {
+      left: Math.random() * 100,
+      delay: Math.random() * 12,
+      duration: 12 + Math.random() * 14,
+      size: 18 + Math.random() * 18,
+      rot: Math.random() * 360,
+      tilt: -25 + Math.random() * 50,
+      ...p,
+    };
+  });
 }
 
 function Petals() {
@@ -76,15 +86,34 @@ function Petals() {
             left: `${p.left}%`,
             top: "-5vh",
             width: p.size,
-            height: p.size * 1.4,
-            background: p.color,
-            borderRadius: "150% 0 150% 0",
-            transform: `rotate(${p.rot}deg)`,
-            animation: `petal-fall ${p.duration}s linear ${p.delay}s infinite`,
-            opacity: 0.85,
-            boxShadow: "0 0 6px rgba(0,0,0,.15)",
+            height: p.size,
+            animation: `petal-sway ${p.duration}s cubic-bezier(.45,.05,.55,.95) ${p.delay}s infinite`,
+            filter: "drop-shadow(0 4px 6px rgba(120,0,30,.35))",
+            transformOrigin: "center",
           }}
-        />
+        >
+          <svg viewBox="0 0 32 32" width="100%" height="100%" style={{ transform: `rotate(${p.tilt}deg)` }}>
+            <defs>
+              <radialGradient id={`pg${i}`} cx="35%" cy="30%" r="80%">
+                <stop offset="0%" stopColor={p.a} />
+                <stop offset="55%" stopColor={p.b} />
+                <stop offset="100%" stopColor={p.c} />
+              </radialGradient>
+            </defs>
+            <path
+              d="M16 2 C24 6 30 14 28 22 C26 28 20 30 16 30 C12 30 6 28 4 22 C2 14 8 6 16 2 Z"
+              fill={`url(#pg${i})`}
+              opacity="0.95"
+            />
+            <path
+              d="M16 4 C16 14 16 22 16 30"
+              stroke={p.c}
+              strokeWidth="0.6"
+              opacity="0.4"
+              fill="none"
+            />
+          </svg>
+        </span>
       ))}
     </div>
   );
