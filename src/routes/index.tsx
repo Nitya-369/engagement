@@ -502,12 +502,6 @@ function Index() {
                   {rsvpDone ? "Thank You! ✓" : "💚 Yes, We'll Attend!"}
                 </button>
                 <button
-                  onClick={downloadIcs}
-                  className="w-full rounded-xl border-2 border-[var(--color-gold)] bg-transparent py-3 font-semibold text-[var(--color-gold-light)] active:scale-[0.98]"
-                >
-                  📅 Add to Calendar
-                </button>
-                <button
                   onClick={shareWhatsApp}
                   className="w-full rounded-xl bg-[#25D366] py-3 font-semibold text-white active:scale-[0.98]"
                 >
