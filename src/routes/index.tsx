@@ -514,9 +514,20 @@ function Index() {
 
             {/* MAP */}
             <section className="rounded-2xl border border-[var(--color-gold)]/40 bg-[var(--color-pichwai)]/80 p-4 shadow-[0_0_30px_rgba(212,175,55,.15)]">
-              <p className="mb-3 text-center font-display font-bold text-[var(--color-gold)]">
-                📍 Venue Location
-              </p>
+              <div className="mb-3 text-center">
+                <p className="font-cursive text-3xl text-[var(--color-gold)]" style={{ textShadow: "0 0 14px rgba(212,175,55,.35)" }}>
+                  Venue
+                </p>
+                <p className="mt-1 font-royal text-base font-bold tracking-[0.18em] text-[var(--color-gold-light)]">
+                  {CONFIG.venueName}
+                </p>
+                <p className="text-[11px] italic text-[var(--color-gold-light)]/80">
+                  {CONFIG.venueSub}
+                </p>
+                <p className="text-[11px] text-[var(--color-gold-light)]/70">
+                  📍 {CONFIG.venueAddress}
+                </p>
+              </div>
               <div className="overflow-hidden rounded-lg ring-1 ring-[var(--color-gold)]/40">
                 <iframe
                   title="Venue map"
