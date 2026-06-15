@@ -103,6 +103,7 @@ function Index() {
     { left: number; color: string; delay: number; rot: number }[]
   >([]);
   const inviteRef = useRef<HTMLDivElement>(null);
+  const [zoom, setZoom] = useState(false);
   const { days, hours, mins } = useCountdown(CONFIG.eventDate);
 
   useEffect(() => {
@@ -143,11 +144,10 @@ function Index() {
   };
 
   const timeline = [
-    { icon: "🪔", title: "Ganesh Pooja", time: "10:30 AM", note: "Seeking divine blessings" },
-    { icon: "🌾", title: "Gol Dhana", time: "11:00 AM", note: "Traditional ceremony" },
-    { icon: "💍", title: "Ring Ceremony", time: "11:30 AM", note: "Exchange of rings" },
-    { icon: "📸", title: "Photo Session", time: "12:00 PM", note: "Capturing memories" },
-    { icon: "🍽️", title: "Lunch", time: "1:00 PM", note: "Traditional feast" },
+    { icon: "🪔", title: "Ganesh Pooja", time: "8:30 AM", note: "Seeking divine blessings" },
+    { icon: "🌾", title: "Gol Dhana", time: "9:00 AM", note: "Traditional ceremony" },
+    { icon: "💍", title: "Ring Ceremony", time: "9:30 AM", note: "Exchange of rings" },
+    { icon: "🍽️", title: "Lunch", time: "11:00 AM", note: "Traditional feast" },
   ];
 
   return (
