@@ -132,7 +132,6 @@ function Index() {
     { left: number; color: string; delay: number; rot: number }[]
   >([]);
   const inviteRef = useRef<HTMLDivElement>(null);
-  const [zoom, setZoom] = useState(false);
   const { days, hours, mins } = useCountdown(CONFIG.eventDate);
 
   useEffect(() => {
