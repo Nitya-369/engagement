@@ -136,32 +136,6 @@ function Index() {
     setTimeout(() => setConfetti([]), 3500);
   };
 
-  const downloadIcs = () => {
-    const c = CONFIG.calendar;
-    const ics = [
-      "BEGIN:VCALENDAR",
-      "VERSION:2.0",
-      "PRODID:-//Engagement//EN",
-      "BEGIN:VEVENT",
-      `UID:${Date.now()}@invite`,
-      `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, "").split(".")[0]}Z`,
-      `DTSTART:${c.start}`,
-      `DTEND:${c.end}`,
-      `SUMMARY:${c.title}`,
-      `DESCRIPTION:${c.description}`,
-      `LOCATION:${c.location}`,
-      "END:VEVENT",
-      "END:VCALENDAR",
-    ].join("\r\n");
-    const blob = new Blob([ics], { type: "text/calendar" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "engagement.ics";
-    a.click();
-    URL.revokeObjectURL(url);
-  };
-
   const shareWhatsApp = () => {
     const url = typeof window !== "undefined" ? window.location.href : "";
     const msg = encodeURIComponent(CONFIG.whatsappMessage + url);
