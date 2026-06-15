@@ -132,7 +132,6 @@ function Index() {
     { left: number; color: string; delay: number; rot: number }[]
   >([]);
   const inviteRef = useRef<HTMLDivElement>(null);
-  const [zoom, setZoom] = useState(false);
   const { days, hours, mins } = useCountdown(CONFIG.eventDate);
 
   useEffect(() => {
@@ -225,17 +224,26 @@ function Index() {
               <div className="mx-auto mb-4 text-5xl" style={{ animation: "soft-pulse 1.8s ease-in-out infinite" }}>
                 🕉️
               </div>
-              <p
-                className="font-guj text-2xl font-bold leading-relaxed text-[var(--color-gold-light)]"
+              <div
+                className="font-sanskrit text-[var(--color-gold-light)]"
                 style={{ animation: "shlok-glow 2.4s ease-in-out infinite" }}
+                lang="sa"
               >
-                વક્રતુંડ મહાકાય<br />સૂર્યકોટિ સમપ્રભ
-              </p>
-              <p className="mt-3 font-guj text-base text-[var(--color-gold-light)]/90">
-                નિર્વિઘ્નં કુરુ મે દેવ<br />સર્વકાર્યેષુ સર્વદા
-              </p>
-              <div className="mx-auto mt-4 h-px w-32 bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent" />
-              <p className="mt-3 font-cursive text-2xl text-[var(--color-gold)]">
+                <p className="text-3xl leading-[1.6] tracking-wide">
+                  स्नेहस्य विश्वासस्य च
+                </p>
+                <p className="mt-2 text-3xl leading-[1.6] tracking-wide">
+                  देवेन नित्या च
+                </p>
+                <p className="mt-2 text-3xl leading-[1.6] tracking-wide">
+                  सहजीवनव्रतस्य
+                </p>
+                <p className="mt-2 text-3xl leading-[1.6] tracking-wide">
+                  शुभारम्भः
+                </p>
+              </div>
+              <div className="mx-auto mt-5 h-px w-40 bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent" />
+              <p className="mt-4 font-cursive text-3xl text-[var(--color-gold)]">
                 Shubh Aarambh
               </p>
             </div>
@@ -339,12 +347,9 @@ function Index() {
       >
         <div className="bg-[var(--color-pichwai)]/85 backdrop-blur-sm">
           <div className="mx-auto max-w-md px-5 py-12 space-y-10">
-            {/* INVITATION CARD */}
-            <button
-              type="button"
-              onClick={() => setZoom(true)}
-              aria-label="Open invitation in large view"
-              className="group relative block w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-[var(--color-gold)]/40 transition-transform active:scale-[0.99]"
+            {/* INVITATION CARD (static display) */}
+            <div
+              className="relative block w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-[var(--color-gold)]/40"
               style={{
                 aspectRatio: "1080 / 1920",
                 backgroundImage: `url(${pichwaiFrame.url})`,
@@ -355,7 +360,7 @@ function Index() {
               {/* Content printed inside the pichwai frame */}
               <div className="absolute inset-0 flex flex-col items-center justify-center px-[14%] text-center text-[var(--color-gold-light)]">
                 <p
-                  className="font-tangerine text-4xl text-[var(--color-gold)] drop-shadow-[0_2px_6px_rgba(0,0,0,.55)]"
+                  className="font-cursive text-4xl text-[var(--color-gold)] drop-shadow-[0_2px_6px_rgba(0,0,0,.55)]"
                   style={{ textShadow: "0 0 14px rgba(212,175,55,.45)" }}
                 >
                   By grace of god
@@ -369,14 +374,14 @@ function Index() {
                   Engagement of
                 </p>
                 <h2
-                  className="mt-3 font-tangerine text-[4.2rem] leading-[1] text-[var(--color-gold)]"
+                  className="mt-3 font-cursive text-[3.6rem] leading-[1] text-[var(--color-gold)]"
                   style={{ textShadow: "0 2px 10px rgba(0,0,0,.55), 0 0 22px rgba(212,175,55,.5)" }}
                 >
                   Deven
                 </h2>
-                <p className="my-1 font-tangerine text-3xl italic text-[var(--color-gold-light)]">&amp;</p>
+                <p className="my-1 font-cursive text-3xl italic text-[var(--color-gold-light)]">&amp;</p>
                 <h2
-                  className="font-tangerine text-[4.2rem] leading-[1] text-[var(--color-gold)]"
+                  className="font-cursive text-[3.6rem] leading-[1] text-[var(--color-gold)]"
                   style={{ textShadow: "0 2px 10px rgba(0,0,0,.55), 0 0 22px rgba(212,175,55,.5)" }}
                 >
                   Nitya
@@ -386,14 +391,8 @@ function Index() {
                   <span className="text-[10px]">✦</span>
                   <span className="h-px w-6 bg-[var(--color-gold)]/70" />
                 </div>
-                <p className="mt-2 font-royal text-[10px] uppercase tracking-[0.35em] text-[var(--color-gold-light)]/90">
-                  12 · 07 · 2026 · 8:30 AM
-                </p>
               </div>
-              <span className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-black/55 px-3 py-1 text-[10px] tracking-widest text-[var(--color-gold-light)] opacity-90 group-hover:opacity-100">
-                ✦ TAP TO ENLARGE ✦
-              </span>
-            </button>
+            </div>
 
             {/* TIMELINE — zig-zag with ornate medallions */}
             <section className="relative overflow-hidden rounded-2xl border border-[var(--color-gold)]/40 bg-gradient-to-b from-[var(--color-pichwai)]/90 to-[#0f0f3a]/90 p-6 shadow-[0_0_40px_rgba(212,175,55,.18)] ring-1 ring-[var(--color-gold)]/30">
@@ -405,7 +404,7 @@ function Index() {
 
               <div className="relative text-center">
                 <p className="font-cursive text-4xl text-[var(--color-gold)]" style={{ textShadow: "0 0 18px rgba(212,175,55,.4)" }}>
-                  Rituals
+                  Engagement
                 </p>
                 <p className="font-royal text-[11px] uppercase tracking-[0.4em] text-[var(--color-gold-light)]/90">
                   Sunday · 12 July 2026
@@ -645,78 +644,6 @@ function Index() {
       )}
 
       {/* INVITATION ZOOM MODAL */}
-      {zoom && (
-        <div
-          className="fixed inset-0 z-[960] flex items-center justify-center bg-black/85 p-4 animate-fade-in"
-          onClick={() => setZoom(false)}
-        >
-          <button
-            onClick={() => setZoom(false)}
-            className="absolute top-4 right-4 grid h-10 w-10 place-items-center rounded-full bg-[var(--color-maroon)] text-xl text-[var(--color-gold-light)] ring-2 ring-[var(--color-gold)]"
-            aria-label="Close"
-          >
-            ✕
-          </button>
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative max-h-[92vh] w-full max-w-[420px] overflow-hidden rounded-2xl shadow-2xl ring-2 ring-[var(--color-gold)]"
-            style={{
-              aspectRatio: "1080 / 1920",
-              backgroundImage: `url(${pichwaiFrame.url})`,
-              backgroundSize: "100% 100%",
-              backgroundRepeat: "no-repeat",
-              animation: "shlok-pop .7s cubic-bezier(.2,.9,.25,1.2) both",
-            }}
-          >
-            <div className="absolute inset-0 flex flex-col items-center justify-center px-[14%] text-center text-[var(--color-gold-light)]">
-              <p
-                className="font-tangerine text-5xl text-[var(--color-gold)]"
-                style={{ textShadow: "0 0 18px rgba(212,175,55,.55)" }}
-              >
-                By grace of god
-              </p>
-              <div className="my-4 flex items-center gap-2 text-[var(--color-gold)]/80">
-                <span className="h-px w-10 bg-[var(--color-gold)]/70" />
-                <span className="text-xs">✦</span>
-                <span className="h-px w-10 bg-[var(--color-gold)]/70" />
-              </div>
-              <p className="font-royal text-xs uppercase tracking-[0.5em] text-[var(--color-gold-light)]/95">
-                Engagement of
-              </p>
-              <h2
-                className="mt-4 font-tangerine text-[5.5rem] leading-[1] text-[var(--color-gold)]"
-                style={{ textShadow: "0 2px 10px rgba(0,0,0,.6), 0 0 26px rgba(212,175,55,.55)" }}
-              >
-                Deven
-              </h2>
-              <p className="my-1 font-tangerine text-4xl italic text-[var(--color-gold-light)]">&amp;</p>
-              <h2
-                className="font-tangerine text-[5.5rem] leading-[1] text-[var(--color-gold)]"
-                style={{ textShadow: "0 2px 10px rgba(0,0,0,.6), 0 0 26px rgba(212,175,55,.55)" }}
-              >
-                Nitya
-              </h2>
-              <div className="mt-6 flex items-center gap-2 text-[var(--color-gold)]/80">
-                <span className="h-px w-8 bg-[var(--color-gold)]/70" />
-                <span className="text-[10px]">✦</span>
-                <span className="h-px w-8 bg-[var(--color-gold)]/70" />
-              </div>
-              <p className="mt-3 font-royal text-[11px] uppercase tracking-[0.4em] text-[var(--color-gold-light)]/95">
-                Sunday · 12 July 2026
-              </p>
-              <p className="mt-1 font-royal text-[11px] tracking-[0.35em] text-[var(--color-gold-light)]/90">
-                8:30 AM onwards
-              </p>
-              <p className="mt-3 font-cursive text-xl text-[var(--color-gold)]">
-                {CONFIG.venueName}
-              </p>
-              <p className="text-[10px] italic text-[var(--color-gold-light)]/80">
-                {CONFIG.venueSub}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
