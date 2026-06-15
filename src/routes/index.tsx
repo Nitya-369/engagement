@@ -21,20 +21,17 @@ export const Route = createFileRoute("/")({
 });
 
 const CONFIG = {
-  eventDate: "2026-06-28T11:00:00+05:30",
-  mapsUrl: "https://maps.google.com/?q=22.3039,70.8022",
+  eventDate: "2026-07-12T08:30:00+05:30",
+  eventDateLabel: "Sunday, 12th July 2026",
+  venueName: "RIO CARNIVAL",
+  venueSub: "Multi Cuisine Restaurant & Banquets",
+  venueAddress: "Gota, SG Highway, Ahmedabad",
+  mapsUrl: "https://share.google/Ab0b7UdsKy7qNklAS",
   mapEmbed:
-    "https://www.google.com/maps?q=22.3039,70.8022&z=14&output=embed",
+    "https://www.google.com/maps?q=RIO+CARNIVAL+Gota+SG+Highway+Ahmedabad&output=embed",
   whatsappMessage:
-    "🙏 You're invited to Deven & Nitya's Engagement!\n📅 Sunday, 28th June 2026\n📍 The Grand Celebration Hall, Rajkot\n\nView invite: ",
+    "🙏 You're invited to Deven & Nitya's Engagement!\n📅 Sunday, 12th July 2026 · 8:30 AM\n📍 RIO CARNIVAL, Gota, SG Highway, Ahmedabad\n\nView invite: ",
   contact: "+91 98765 43210",
-  calendar: {
-    title: "Deven & Nitya Engagement",
-    description: "Engagement ceremony of Deven & Nitya",
-    location: "The Grand Celebration Hall, Rajkot",
-    start: "20260628T053000Z", // 11:00 IST
-    end: "20260628T093000Z",   // 15:00 IST
-  },
 };
 
 function useCountdown(target: string) {
