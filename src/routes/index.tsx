@@ -305,12 +305,18 @@ function Index() {
             </button>
 
             {/* Bottom tap-to-open */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-10 z-10 text-center">
+            <div className="pointer-events-none absolute inset-x-0 bottom-12 z-10 text-center">
               <p
-                className="font-display text-lg tracking-[0.3em] text-[var(--color-gold-light)] drop-shadow-[0_2px_6px_rgba(0,0,0,.8)]"
-                style={{ animation: "soft-pulse 1.6s ease-in-out infinite" }}
+                className="font-tangerine text-6xl leading-none text-[var(--color-gold-light)] drop-shadow-[0_3px_10px_rgba(0,0,0,.9)]"
+                style={{
+                  animation: "tap-bounce 1.8s ease-in-out infinite",
+                  textShadow: "0 0 22px rgba(212,175,55,.55)",
+                }}
               >
-                ✨ Tap to Open ✨
+                ✦ Tap to Open ✦
+              </p>
+              <p className="mt-1 font-royal text-[10px] uppercase tracking-[0.45em] text-[var(--color-gold)]/85">
+                The Doors of Destiny
               </p>
             </div>
 
