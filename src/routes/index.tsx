@@ -407,7 +407,9 @@ function Index() {
                 <p className="font-cursive text-4xl text-[var(--color-gold)]" style={{ textShadow: "0 0 18px rgba(212,175,55,.4)" }}>
                   Rituals
                 </p>
-                <h3 className="font-guj text-xl font-bold text-[var(--color-gold-light)]">શુભ કાર્યક્રમ</h3>
+                <p className="font-royal text-[11px] uppercase tracking-[0.4em] text-[var(--color-gold-light)]/90">
+                  Sunday · 12 July 2026
+                </p>
                 <div className="mx-auto mt-2 flex items-center justify-center gap-2">
                   <span className="h-px w-10 bg-gradient-to-r from-transparent to-[var(--color-gold)]" />
                   <span className="text-[var(--color-gold)]">✦</span>
