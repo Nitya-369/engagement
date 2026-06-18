@@ -1,0 +1,14 @@
+{
+  "build": {
+    "env": {},
+    "command": "npm run build",
+    "outputDirectory": "dist/client"
+  },
+  "routes": [
+    {
+      "src": "/favicon.ico",
+      "dest": "/favicon.svg",
+      "status": 200
+    }
+  ]
+}

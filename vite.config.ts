@@ -23,5 +23,18 @@ export default defineConfig({
         },
       },
     },
+    plugins: [
+      {
+        name: "favicon-fallback",
+        configureServer(server) {
+          server.middlewares.use((req, res, next) => {
+            if (req.url === "/favicon.ico") {
+              req.url = "/favicon.svg";
+            }
+            next();
+          });
+        },
+      },
+    ],
   },
 });
