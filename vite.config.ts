@@ -12,4 +12,16 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    server: {
+      proxy: {
+        // Forward Lovable asset CDN requests to lovable.dev so images work locally
+        "/__l5e": {
+          target: "https://lovable.dev",
+          changeOrigin: true,
+          secure: false,
+        },
+      },
+    },
+  },
 });
