@@ -38,4 +38,4 @@ const html = `<!DOCTYPE html>
 </html>`;
 
 fs.writeFileSync(path.join(distClient, 'index.html'), html);
-console.log('✓ Created index.html for Netlify deployment');
+console.log('✓ Created index.html');
