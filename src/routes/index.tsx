@@ -1,15 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-// Images stored locally in /public — copy from Lovable if missing
+// Images stored locally in /public — using WebP for faster loading
 const ASSETS = {
-  door: "/door-bg.jpg",
-  sunrise: "/sunrise-bg.jpg",
-  invitation: "/invitation-bg.jpg",
-  pichwaiFrame: "/pichwai-frame-v2.jpg",
-  pichwaiBg: "/pichwai-frame.jpg",
-  shlokaBg: "/shloka-bg.png",
-  shlokaFrame: "/shloka-frame.png",
+  door: "/door-bg.webp",
+  sunrise: "/sunrise-bg.webp",
+  invitation: "/invitation-bg.webp",
+  pichwaiFrame: "/pichwai-frame-v2.webp",
+  pichwaiBg: "/pichwai-frame.webp",
+  shlokaBg: "/shloka-bg.webp",
+  shlokaFrame: "/shloka-frame.webp",
 };
 
 
@@ -723,8 +723,8 @@ function Index() {
           </div>
         </div>
 
-        {/* BACKGROUND MUSIC */}
-        <audio ref={audioRef} src="/bg-music.mp3" loop autoPlay />
+        {/* BACKGROUND MUSIC - preload="none" for lazy loading */}
+        <audio ref={audioRef} src="/bg-music.mp3" loop preload="none" />
 
         {/* CONFETTI */}
         {confetti.length > 0 && (
